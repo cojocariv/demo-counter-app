@@ -2,6 +2,11 @@ pipeline {
     
     agent any
     
+    tools { 
+      maven 'MAVEN_HOME' 
+      jdk 'JAVA_HOME' 
+    }
+
     stages {
      stage ('Git Checkout'){
         steps{
@@ -11,9 +16,6 @@ pipeline {
 
       stage ('UNIT Testing'){
         steps{
-            sh 'export MAVEN_HOME=/opt/maven'
-            sh 'export PATH=$PATH:$MAVEN_HOME/bin'
-            sh 'mvn --version'
             sh 'mvn test'
         }
      }
